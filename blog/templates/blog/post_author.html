@@ -1,0 +1,9 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for document in documents %}
+        <p>{{ document.author }}</p>
+        <p>{{ document.text }}</p>
+        <p><img src="{{ document.docfile.url }}" alt=""></p>
+    {% endfor %}
+{% endblock %}

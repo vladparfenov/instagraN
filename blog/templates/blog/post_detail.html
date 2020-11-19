@@ -1,0 +1,37 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<div>
+        <p><a href="{% url 'post_delete' new.pk %}"> - удалить пост</a></p>
+        <p class="fig"><img src="{{ new.docfile.url }}" width="400" height="400" alt=""></p>
+        <p class="fig">{{ new.text }}</p>
+
+    <p class="fig"><a href="{% url 'post_author' id=request.user.id  %}">{{ new.author }}</a></p>
+    <p><img src="{{ document.docfile.url }}" alt=""></p>
+
+    <div class="fig">
+        <h4>Комментарии</h4>
+     {% for comment in comments %}
+         Пользователь - {{ comment.user }}<br>
+         {{ comment.text }} <br>
+         Добавлен - {{ comment.created }}<br><br>
+     {% endfor %}
+      {% for comment in new.comments_set.all %}
+        Пользователь - {{ comment.user }}<br>
+        {{ comment.text }} <br>
+        Добавлен - {{ comment.created }}<br><br>
+    {% endfor %}
+    {% if user.is_active %}
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Отправить</button>
+        </form>
+    {% else %}
+        <h4>Что бы оставить комментарий авторизуйтесь</h4>
+    {% endif %}
+
+{% endblock %}
+</div>
+</div>

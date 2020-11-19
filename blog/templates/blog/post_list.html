@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+        {% if documents %}
+            <ul>
+                <div class="col-md-8"></div>
+                {% for document in documents %}
+
+                <li><a href="{% url 'post_detail' pk=document.id %}"><img src="{{ document.docfile.url }}" width="400" height="400" alt=""></a></li>
+                 <p>{{ document.text }}</p>
+                 <p>{{ document.author }}</p>
+                 <p>{{ document.created_date }}</p>
+                {% endfor %}
+                </div>
+            </ul>
+        {% else %}
+            <p>Нет ни одного поста.</p>
+        {% endif %}
+
+
+{% endblock %}
