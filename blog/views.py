@@ -56,6 +56,7 @@ def post_author(request, id):
     documents = Documents.objects.filter(id=request.user.id)
     return render(request, 'blog/post_author.html', {'documents': documents})
 
+
 def my_site(request):
     context = {
         'posts': Documents.objects.filter(author=request.user)

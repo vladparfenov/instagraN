@@ -1,9 +1,11 @@
-{% extends 'blog/base.html' %}
+{% extends 'blog/index.html' %}
 
 {% block content %}
 
 <div>
+        {% if user.is_authenticated %}
         <p><a href="{% url 'post_delete' new.pk %}"> - удалить пост</a></p>
+        {% endif %}
         <p class="fig"><img src="{{ new.docfile.url }}" width="400" height="400" alt=""></p>
         <p class="fig">{{ new.text }}</p>
 
